@@ -1,3 +1,4 @@
+import axios from 'axios'
 /*
   STEP 1: using axios, send a GET request to the following URL
     (replacing the placeholder with your Github name):
@@ -58,3 +59,45 @@ const followersArray = [];
     luishrd
     bigknell
 */
+//function
+function cardMaker({  })
+
+// elements
+    const wholeCard = document.createElement('div')
+    const profileImg = document.createElement('img')
+    const content = document.createElement('div')
+    const loginName = document.createElement('h3')
+    const userName = document.createElement('p')
+    const userLocation = document.createElement('p')
+    const profile = document.createElement('p')
+    const profileLink = document.createElement('a')
+    const userFollowers = document.createElement('p')
+    const userFollowing = document.createElement('p')
+    const userBio = document.createElement('p')
+
+// appends
+    wholeCard.appendChild(profileImg)
+    wholeCard.appendChild(content)
+    content.appendChild(loginName)
+    content.appendChild(userName)
+    content.appendChild(userLocation)
+    content.appendChild(profile)
+    profile.appendChild(profileLink)
+    content.appendChild(userFollowers)
+    content.appendChild(userFollowing)
+    content.appendChild(userBio)
+
+
+axios.get('https://api.github.com/users/JoshuaPattonWeb')
+.then(result => {
+  const dataObj = result.dataObj
+  const cards = document.querySelector('.cards')
+  const gitCard = cardMaker(result.data) 
+  cards.appendChild(gitCard)
+  // follow step 4
+  // get the element with a class of cards from teh DOM, document.querySelector('cards')
+  // append the user card to the element we just querySelected
+})
+.catch(error => {
+  console.error(error)
+})
