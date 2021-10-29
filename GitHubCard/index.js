@@ -29,7 +29,7 @@ import axios from 'axios'
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ['https://api.github.com/users/tetondan', 'https://api.github.com/users/dustinmyers', 'https://api.github.com/users/justsml', 'https://api.github.com/users/luishrd', 'https://api.github.com/users/bigknell'];
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -60,7 +60,8 @@ const followersArray = [];
     bigknell
 */
 //function
-function cardMaker({  })
+    const card = document.querySelector('.cards')
+    function cardMaker({ avatar_url, name, login, location, html_url, followers, following, bio }) {
 
 // elements
     const wholeCard = document.createElement('div')
@@ -87,11 +88,31 @@ function cardMaker({  })
     content.appendChild(userFollowing)
     content.appendChild(userBio)
 
+// element data
+    wholeCard.classList.add('card')
+    content.classList.add('user-content')
+    loginName.classList.add('name')
+    userName.classList.add('username')
 
-axios.get('https://api.github.com/users/JoshuaPattonWeb')
+// text addition
+    profileImg.src = avatar_url
+    loginName.textContent = name
+    userName.textContent = login
+    userLocation.textContent = `location: ${location}`
+    profile.textContent = 'Profile:'
+    profileLink.href = html_url
+    profileLink.textContent = html_url
+    userFollowers.textContent = `Followers: ${followers}`
+    userFollowing.textContent = `Following: ${following}`
+    userBio.textContent = `Bio: ${bio}`
+    console.log(wholeCard)
+    return cardMaker(wholeCard)
+}
+
+const test = axios.get('https://api.github.com/users/JoshuaPattonWeb')
 .then(result => {
-  const dataObj = result.dataObj
-  const cards = document.querySelector('.cards')
+  const data = result.data
+  // const cards = document.querySelector('.cards')
   const gitCard = cardMaker(result.data) 
   cards.appendChild(gitCard)
   // follow step 4
@@ -101,3 +122,6 @@ axios.get('https://api.github.com/users/JoshuaPattonWeb')
 .catch(error => {
   console.error(error)
 })
+
+//receiving error and i looked over it numerous times and I cannot seem to find the issue https://prnt.sc/1xoo8kc
+// its really stressing me out and its not portraying any code. Its not showing where error is located.
