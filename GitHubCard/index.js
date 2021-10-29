@@ -37,13 +37,6 @@ axios.get('https://api.github.com/users/JoshuaPattonWeb')
     user, and adding that card to the DOM.
 */
 
-const followersArray = ['https://api.github.com/users/tetondan', 'https://api.github.com/users/dustinmyers', 'https://api.github.com/users/justsml', 'https://api.github.com/users/luishrd', 'https://api.github.com/users/bigknell'];
-
-followersArray.forEach(people => {
-  cardMaker(people)
-})
-
-cardMaker('JoshuaPattonWeb')
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
     Using DOM methods and properties, create and return the following markup:
@@ -128,10 +121,22 @@ cardMaker('JoshuaPattonWeb')
     return pullCard
 }
 
+cardMaker('JoshuaPattonWeb')
 
-  // const cards = document.querySelector('.cards')
+const followersArray = []
+
+followersArray.push('tetondan')
+followersArray.push('dustinmyers')
+followersArray.push('justsml')
+followersArray.push('luishrd')
+followersArray.push('bigknell')
+
+followersArray.forEach(people => {
+  cardMaker(people)
+})
+
   // follow step 4
-  // get the element with a class of cards from teh DOM, document.querySelector('cards')
+  // get the element with a class of cards from the DOM, document.querySelector('cards')
   // append the user card to the element we just querySelected
 //receiving error and i looked over it numerous times and I cannot seem to find the issue https://prnt.sc/1xoo8kc
 // its really stressing me out and its not portraying any code. Its not showing where error is located.
